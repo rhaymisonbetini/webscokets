@@ -7,28 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <style>
-        input {
-            width: 100%;
-            height: 35px;
-        }
-
-        #messages {
-            margin-top: 25px;
-            font-size: 32px;
-            font-weight: 700;
-            list-style-type: none;
-            margin: 0;
-            padding: 10px;
-        }
-
-        #messages li:nth-child(odd){
-            background-color: wheat
-        }
-
-    </style>
-
+    <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
@@ -39,8 +18,6 @@
     <script src="https://cdn.socket.io/4.4.0/socket.io.min.js"
         integrity="sha384-1fOn6VtTq3PWwfsOrk45LnYcGosJwzMHv+Xh/Jx5303FVOXzEnw0EpLv30mtjmlj"
         crossorigin="anonymous"></script>
-
-
 
     <div class="container">
         <div class="row">
@@ -57,29 +34,7 @@
             </ul>
         </div>
     </div>
-
-
-
-    <script>
-
-        const socket = io('http://localhost:9000');
-
-        socket.on('messageFromServer', (dataFromServer) => {
-        document.querySelector('#messages').innerHTML += `<li>SERVER SAYS: ${dataFromServer.data}</li>`;
-        })
-
-        document.querySelector('#message-form').addEventListener('submit', (event) => {
-            event.preventDefault();
-            const newMessage = document.querySelector('#user-message').value;
-            socket.emit('newMessageToServer', { text: newMessage })
-        })
-
-        socket.on('messageToClients', (msg) => {
-            document.querySelector('#messages').innerHTML += `<li>${msg.text}</li>`;
-        })
-
-    </script>
-
+    <script src="scripts.js"></script>
 </body>
 
 </html>
