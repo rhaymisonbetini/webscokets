@@ -10,9 +10,9 @@ const io = socketio(expressServer)
 io.on('connection', (socket) => {
 
     socket.emit('messageFromServer', { data: "Wellcome to the jungle!" })
-
-    socket.on("messageToServer", (msg) => {
-        console.log(msg)
+    
+    socket.on("newMessageToServer", (msg) => {
+        io.emit('messageToClients', { text: msg.text })
     })
 })
 
